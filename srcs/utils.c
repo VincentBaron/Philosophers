@@ -6,9 +6,11 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/08/24 12:06:32 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/08/24 15:17:26 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/philosophers.h"
 
 long	ft_atoi(const char *nptr)
 {

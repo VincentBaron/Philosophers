@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/24 11:51:53 by vbaron            #+#    #+#              #
-#    Updated: 2021/08/24 12:13:29 by vbaron           ###   ########.fr        #
+#    Updated: 2021/08/24 15:16:24 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,9 @@ SOURCES = 	main.c \
 			error.c \
 			utils.c \
 			check_args.c \
+			create_philosophers.c \
+			dinner.c \
+			mutex_locking.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))

@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/24 12:07:59 by vbaron            #+#    #+#             */
-/*   Updated: 2021/08/24 15:29:12 by vbaron           ###   ########.fr       */
+/*   Created: 2021/08/24 14:12:22 by vbaron            #+#    #+#             */
+/*   Updated: 2021/08/24 15:28:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void check_args(t_general *mother, char **av)
+void eat(t_philo *philo)
+{
+	lock_fork(philo);
+	printf("philo[%d] is eating", philo->id);
+	usleep(philo->time_to_eat);
+}
+
+void *request_eating(void *void_philo)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)void_philo;
+	if (philo->lfork_locked == 0 && philo->rfork_locked == 0)
+		eat(philo);
+	return (0);
+}
+
+void start_dinner(t_general *mother)
 {
 	int i;
-	int f;
 
-	i = 1;
-	while (av[i])
+	i = 0;
+	while(i < mother->no_philos)
 	{
-		f = 0;
-		while (av[i][f])
-		{
-			if (av[i][f] < '0' || av[i][f] > '9')
-				error(mother, 2);
-			f++;
-		}
+		pthread_create(&(mother->philo[i].thread), NULL, request_eating, &(mother->philo[i]));
 		i++;
 	}
 }
