@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/08/24 15:27:14 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/08/24 17:06:53 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ typedef struct s_philo
 {
 	int id;
 	pthread_t thread;
-	pthread_mutex_t *lfork;
-	pthread_mutex_t *rfork;
+	pthread_mutex_t lfork;
+	pthread_mutex_t rfork;
 	pthread_mutex_t *speak;
 	int speak_locked;
 	int lfork_locked;
@@ -41,6 +41,7 @@ typedef struct s_general
 	int time_to_sleep;
 	int no_eats;
 	int no_args;
+	int end;
 } t_general;
 
 // main.c
@@ -77,6 +78,10 @@ void lock_speak(t_philo *philo);
 // check_args.c
 
 void check_args(t_general *mother, char **av);
+
+// print_philos_attrs.c
+
+void print_philos(t_general *mother);
 
 
 #endif
