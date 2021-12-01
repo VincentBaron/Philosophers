@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/08/24 16:00:36 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 17:21:05 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ long	ft_atoi(const char *nptr)
 	else if (nbr < 0 && sign < 0 && nbr * sign != -2147483648)
 		return (0);
 	return ((nbr * sign));
+}
+
+void safe_write(t_philo *philo, int type)
+{
+	if (type == EAT)
+	{
+		pthread_mutex_lock(&philo->mother->write_mutex);
+		printf("Philo %d is eating\n", philo->id);
+		pthread_mutex_unlock(&philo->mother->write_mutex);
+	}
+	if (type == ENTER)
+	{
+		pthread_mutex_lock(&philo->mother->write_mutex);
+		printf("Philo %d is in thread\n", philo->id);
+		pthread_mutex_unlock(&philo->mother->write_mutex);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 15:29:23 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 17:21:03 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+
+#define EAT 1
+#define ENTER 2
 
 typedef struct s_general
 {
@@ -40,7 +43,7 @@ typedef struct s_philo
 	pthread_mutex_t lfork;
 	pthread_mutex_t rfork;
 	long long last_meal;
-	int meals_lef;
+	int meals_left;
 	t_gen *mother;
 } t_philo;
 
@@ -48,19 +51,27 @@ typedef struct s_philo
 
 
 // fill_mother.c
-void fill_mother(t_gen *mother, char **av, int ac);
+int fill_mother(t_gen *mother, char **av, int ac);
 
 // error.c
 void error(t_gen *mother, int err);
 
 // utils.c
 long	ft_atoi(const char *nptr);
+void safe_write(t_philo *philo, int type);
 
 // check_args.c
 void check_args(t_gen *mother, char **av);
 
 // print_mother_attrs.c
 void print_mother_attrs(t_gen *mother);
+
+// sit_dowm_philos.c
+int sit_down_philos(t_gen *mother);
+
+
+// dinner_time.c
+void *dinner_time(void *ptr_philo);
 
 
 #endif

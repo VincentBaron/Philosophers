@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/24 11:51:53 by vbaron            #+#    #+#              #
-#    Updated: 2021/12/01 15:28:46 by vbaron           ###   ########.fr        #
+#    Updated: 2021/12/01 17:08:49 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SOURCES = 	main.c \
 			check_args.c \
 			fill_mother.c \
 			print_mother_attrs.c \
+			dinner_time.c \
+			sit_down_philos.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
@@ -26,9 +28,9 @@ HEADERS = headers
 
 NAME = philo
 
-CC = gcc
+CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -pthread #-fsanitize=address
 
 all: $(NAME)
 
