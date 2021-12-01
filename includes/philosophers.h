@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/08/24 17:06:53 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 15:29:23 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,49 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+typedef struct s_general
+{
+	struct s_philo *philo;
+	pthread_mutex_t *forks;
+	pthread_mutex_t write_mutex;
+	pthread_mutex_t die_mutex;
+	pthread_mutex_t eat_mutex;
+	int can_write;
+	int nb_philos;
+	long long t_die;
+	long long t_eat;
+	long long t_sleep;
+	int nb_eats;
+} t_gen;
+
 typedef struct s_philo
 {
 	int id;
 	pthread_t thread;
 	pthread_mutex_t lfork;
 	pthread_mutex_t rfork;
-	pthread_mutex_t *speak;
-	int speak_locked;
-	int lfork_locked;
-	int rfork_locked;
-	int time_to_eat;
-	int no_eats;
+	long long last_meal;
+	int meals_lef;
+	t_gen *mother;
 } t_philo;
-
-typedef struct s_general
-{
-	t_philo *philo;
-	int no_philos;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int no_eats;
-	int no_args;
-	int end;
-} t_general;
 
 // main.c
 
 
-// creeate_philosophers.c
+// fill_mother.c
+void fill_mother(t_gen *mother, char **av, int ac);
 
-void create_philosophers(t_general *mother, char **av);
-void fill_philos(t_general *mother);
-void init_philos(t_general *mother);
-
-// dinner.c
-
-void start_dinner(t_general *mother);
-void *request_eating(void *void_philo);
-void eat(t_philo *philo);
-
-// err.c
-
-void error(t_general *mother, int err);
+// error.c
+void error(t_gen *mother, int err);
 
 // utils.c
-
 long	ft_atoi(const char *nptr);
 
-// mutex_locking.c
-
-void unlock_fork(t_philo *philo);
-void lock_fork(t_philo *philo);
-void unlock_speak(t_philo *philo);
-void lock_speak(t_philo *philo);
-
-
 // check_args.c
+void check_args(t_gen *mother, char **av);
 
-void check_args(t_general *mother, char **av);
-
-// print_philos_attrs.c
-
-void print_philos(t_general *mother);
+// print_mother_attrs.c
+void print_mother_attrs(t_gen *mother);
 
 
 #endif

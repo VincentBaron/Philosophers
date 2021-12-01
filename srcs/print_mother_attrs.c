@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   print_mother_attrs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/24 12:07:59 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 15:09:58 by vbaron           ###   ########.fr       */
+/*   Created: 2021/12/01 15:24:32 by vbaron            #+#    #+#             */
+/*   Updated: 2021/12/01 15:29:40 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+# include "../includes/philosophers.h"
 
-void check_args(t_gen *mother, char **av)
+void print_mother_attrs(t_gen *mother)
 {
-	int i;
-	int f;
-
-	i = 1;
-	while (av[i])
-	{
-		f = 0;
-		while (av[i][f])
-		{
-			if (av[i][f] < '0' || av[i][f] > '9')
-				error(mother, 2);
-			f++;
-		}
-		i++;
-	}
+    printf("can_write: %d\n", mother->can_write);
+    printf("nb_philos: %d\n", mother->nb_philos);
+    printf("t_die: %lld\n", mother->t_die);
+    printf("t_eat: %lld\n", mother->t_eat);
+    printf("t_sleep: %lld\n", mother->t_sleep);
+    printf("nb_eats: %d\n", mother->nb_eats);
 }
