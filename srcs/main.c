@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:40:58 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 17:58:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 22:28:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(int ac, char **av)
 		pthread_create(&mother.philo[i].thread, NULL, &dinner_time, &mother.philo[i]);
 		i++;
 	}
+	check_if_dead_or_done_eating(&mother);
 	i = 0;
 	while (i < mother.nb_philos)
 	{

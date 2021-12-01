@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/24 11:51:53 by vbaron            #+#    #+#              #
-#    Updated: 2021/12/01 17:08:49 by vbaron           ###   ########.fr        #
+#    Updated: 2021/12/01 22:27:47 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SOURCES = 	main.c \
 			print_mother_attrs.c \
 			dinner_time.c \
 			sit_down_philos.c \
+			check_if_dead.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))

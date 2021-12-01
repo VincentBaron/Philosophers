@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 17:59:06 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 22:28:23 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ long	ft_atoi(const char *nptr)
 	return ((nbr * sign));
 }
 
+void my_sleep(long long time)
+{
+	usleep(time * 1000);
+}
+
 void safe_write(t_philo *philo, int type)
 {
 	if (type == EAT)
@@ -49,10 +54,16 @@ void safe_write(t_philo *philo, int type)
 		printf("Philo %d is eating\n", philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
-	if (type == ENTER)
+	if (type == SLEEP)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("Philo %d is in thread\n", philo->id);
+		printf("Philo %d is sleeping\n", philo->id);
+		pthread_mutex_unlock(&philo->mother->write_mutex);
+	}
+	if (type == THINK)
+	{
+		pthread_mutex_lock(&philo->mother->write_mutex);
+		printf("Philo %d is thinking\n", philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 }

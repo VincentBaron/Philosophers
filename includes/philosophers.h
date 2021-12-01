@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 17:21:03 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 22:28:57 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # include <unistd.h>
 
 #define EAT 1
-#define ENTER 2
+#define SLEEP 2
+#define THINK 3
+#define FINISH_EAT 4
 
 typedef struct s_general
 {
@@ -34,6 +36,7 @@ typedef struct s_general
 	long long t_eat;
 	long long t_sleep;
 	int nb_eats;
+	int end;
 } t_gen;
 
 typedef struct s_philo
@@ -44,6 +47,8 @@ typedef struct s_philo
 	pthread_mutex_t rfork;
 	long long last_meal;
 	int meals_left;
+	int nb_eats;
+	int can_eat;
 	t_gen *mother;
 } t_philo;
 
@@ -59,6 +64,7 @@ void error(t_gen *mother, int err);
 // utils.c
 long	ft_atoi(const char *nptr);
 void safe_write(t_philo *philo, int type);
+void my_sleep(long long time);
 
 // check_args.c
 void check_args(t_gen *mother, char **av);
@@ -72,6 +78,9 @@ int sit_down_philos(t_gen *mother);
 
 // dinner_time.c
 void *dinner_time(void *ptr_philo);
+
+// check_if_dead.c
+int check_if_dead_or_done_eating(t_gen *mother);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:36:59 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 17:09:55 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/01 22:10:48 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int sit_down_philos(t_gen *mother)
             mother->philo[i].lfork = mother->forks[i + 1];
         mother->philo[i].meals_left = mother->nb_eats;
         mother->philo[i].mother = mother;
+        mother->philo[i].nb_eats = mother->nb_eats;
         i++;
     }
     return (1);
