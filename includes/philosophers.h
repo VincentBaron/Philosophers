@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 11:51:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 12:38:34 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_philo
 	pthread_mutex_t *lfork;
 	pthread_mutex_t *rfork;
 	long long last_meal;
-	int meals_left;
 	int nb_eats;
 	int can_eat;
 	t_gen *mother;

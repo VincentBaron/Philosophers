@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:49:40 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 10:26:39 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 12:41:41 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void *dinner_time(void *ptr_philo)
     unlock_forks(philo);
     sleeping(philo);
     safe_write(philo, THINK);
+    while (philo->nb_eats != 0)
+        dinner_time(philo);
     return (NULL);
 }

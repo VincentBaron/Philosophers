@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:45:39 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 11:56:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 12:39:13 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void print_philos(t_gen *mother)
         printf("philo id: %d\n", mother->philo[i].id);
         printf("philo lfork %p\n", mother->philo[i].lfork);
         printf("philo rfork %p\n", mother->philo[i].rfork);
+        printf("nb eats %d", mother->philo[i].nb_eats);
         i++;
     }
 }
