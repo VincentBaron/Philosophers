@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:49:40 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 12:41:41 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 16:31:31 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void eat(t_philo *philo)
 {
     safe_write(philo, EAT);
     my_sleep(philo->mother->t_eat);
+    philo->last_meal = get_time();
     philo->nb_eats--;
 }
 

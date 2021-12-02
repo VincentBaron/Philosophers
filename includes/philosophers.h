@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 12:38:34 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 16:07:16 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-#define EAT 1
-#define SLEEP 2
-#define THINK 3
-#define FINISH_EAT 4
+enum {EAT, SLEEP, THINK, DEAD, FORK};
 
 typedef struct s_general
 {
@@ -64,6 +61,7 @@ void error(t_gen *mother, int err);
 long	ft_atoi(const char *nptr);
 void safe_write(t_philo *philo, int type);
 void my_sleep(long long time);
+int get_time();
 
 // check_args.c
 void check_args(t_gen *mother, char **av);
