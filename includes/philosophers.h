@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 10:34:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 11:51:17 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_philo
 {
 	int id;
 	pthread_t thread;
-	pthread_mutex_t lfork;
-	pthread_mutex_t rfork;
+	pthread_mutex_t *lfork;
+	pthread_mutex_t *rfork;
 	long long last_meal;
 	int meals_left;
 	int nb_eats;
@@ -85,6 +85,9 @@ int check_if_dead_or_done_eating(t_gen *mother);
 // lock_unlock_forks.c
 void lock_forks(t_philo *philo);
 void unlock_forks(t_philo *philo);
+
+// print_philos.c
+void print_philos(t_gen *mother);
 
 
 #endif

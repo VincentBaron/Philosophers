@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/24 11:51:53 by vbaron            #+#    #+#              #
-#    Updated: 2021/12/02 10:34:45 by vbaron           ###   ########.fr        #
+#    Updated: 2021/12/02 11:48:51 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SOURCES = 	main.c \
 			sit_down_philos.c \
 			check_if_dead.c \
 			lock_unlock_forks.c \
+			print_philos.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
