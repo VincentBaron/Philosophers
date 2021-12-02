@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/01 22:28:57 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/02 10:34:17 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void *dinner_time(void *ptr_philo);
 
 // check_if_dead.c
 int check_if_dead_or_done_eating(t_gen *mother);
+
+// lock_unlock_forks.c
+void lock_forks(t_philo *philo);
+void unlock_forks(t_philo *philo);
 
 
 #endif
