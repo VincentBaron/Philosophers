@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:20:49 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 17:10:30 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/03 17:23:09 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void lock_forks(t_philo *philo)
 {
     if (philo->id % 2 == 0)
     {
-        safe_write(philo, FORK);
         pthread_mutex_lock(philo->lfork);
-        safe_write(philo, FORK);
+        safe_write2(philo, FORK);
         pthread_mutex_lock(philo->rfork);
+        safe_write2(philo, FORK);
     }
     else
     {
-        safe_write(philo, FORK);
         pthread_mutex_lock(philo->rfork);
-        safe_write(philo, FORK);
+        safe_write2(philo, FORK);
         pthread_mutex_lock(philo->lfork);
+        safe_write2(philo, FORK);
     }
 }
 

@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:40:58 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 16:30:03 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/03 17:18:43 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int ac, char **av)
 {
-	(void)av;
 	t_gen mother;
 	int i;
 	
@@ -37,6 +36,5 @@ int main(int ac, char **av)
 		pthread_join(mother.philo[i].thread, NULL);
 		i++;
 	}
-	            printf("yala\n");
 	return (0);
 }

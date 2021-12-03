@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/02 17:06:02 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/03 17:16:25 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void my_sleep(long long time)
 	usleep(time * 1000);
 }
 
-int get_time()
+long get_time()
 {
 	struct timeval tv;
 
@@ -56,44 +56,44 @@ int get_time()
 
 void safe_write(t_philo *philo, int type)
 {
-	long long time_stamp;
+	 long time_stamp;
 
-	time_stamp = get_time();
+	time_stamp = get_time() - philo->mother->start_time;
 	if (type == EAT && philo->mother->can_write)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("%lld %d is eating\n", time_stamp, philo->id);
+		printf("%ld %d is eating\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 	if (type == SLEEP && philo->mother->can_write)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("%lld %d is sleeping\n", time_stamp, philo->id);
+		printf("%ld %d is sleeping\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 	if (type == THINK && philo->mother->can_write)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("%lld %d is thinking\n", time_stamp, philo->id);
+		printf("%ld %d is thinking\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 }
 
 void safe_write2(t_philo *philo, int type)
 {
-	long long time_stamp;
+	 long int time_stamp;
 
-	time_stamp = get_time();
+	time_stamp = get_time() - philo->mother->start_time;
 	if (type == FORK && philo->mother->can_write)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("%lld %d has taken a fork\n", time_stamp, philo->id);
+		printf("%ld %d has taken a fork\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 	if (type == DEAD)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
-		printf("%lld %d is dead\n", time_stamp, philo->id);
+		printf("%ld %d is dead\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
 }
