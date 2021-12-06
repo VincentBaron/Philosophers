@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/03 17:14:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/06 15:21:58 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_general
 	int nb_eats;
 	int can_write;
 	int end;
-	int dead_philo;
+	struct s_philo *end_philo;
 	long start_time;
 } t_gen;
 
@@ -42,6 +42,7 @@ typedef struct s_philo
 	pthread_t thread;
 	pthread_mutex_t *lfork;
 	pthread_mutex_t *rfork;
+	pthread_mutex_t death_checker;
 	long long last_meal;
 	int nb_eats;
 	int can_eat;
