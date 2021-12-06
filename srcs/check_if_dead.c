@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:41:42 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/06 15:37:17 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/06 19:02:08 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,38 @@
 int check_if_dead_or_done_eating(t_gen *mother)
 {
     int i;
-
-    mother->end_philo = NULL;
+    
     while (1)
     {
-        i = 0;
-        while (i < mother->nb_philos)
+        pthread_mutex_lock(&mother->finish_mutex);
+        if (mother->done_eating >= mother->nb_philos)
         {
-            pthread_mutex_lock(&mother->philo[i].death_checker);
-            if (mother->philo[i].nb_eats == 0)
+            pthread_mutex_lock(&mother->write_mutex);
+            mother->can_write = 0;
+            pthread_mutex_unlock(&mother->write_mutex);
+            mother->finish = 1;
+        }
+        pthread_mutex_unlock(&mother->finish_mutex);
+        usleep(10);
+        pthread_mutex_lock(&mother->finish_mutex);
+        i = 0;
+        while (i < mother->nb_eats)
+        {
+            if (get_time() - mother->philo[i].last_meal >= mother->t_die)
             {
+                safe_write(&mother->philo[i], DEAD);
+                pthread_mutex_lock(&mother->write_mutex);
                 mother->can_write = 0;
-                mother->end_philo = &mother->philo[i];
+                pthread_mutex_unlock(&mother->write_mutex);
+                mother->finish = 1;
+                break ;
             }
-            if (get_time() - mother->philo[i].last_meal > mother->t_die)
-            {
-                mother->can_write = 0;
-                mother->end_philo = &mother->philo[i];
-                safe_write2(mother->end_philo, DEAD);
-            }
-            pthread_mutex_unlock(&mother->philo[i].death_checker);
-            if (mother->end_philo)
-                return (1);
             i++;
         }
+        pthread_mutex_unlock(&mother->finish_mutex);
+        if (i <= mother->nb_philos)
+            return (1);
+        usleep(10);
     }
     return (1);
 }

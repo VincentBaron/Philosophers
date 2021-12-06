@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/06 15:21:58 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/06 18:46:41 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ typedef struct s_general
 	struct s_philo *philo;
 	pthread_mutex_t *forks;
 	pthread_mutex_t write_mutex;
+	pthread_mutex_t finish_mutex;
 	int nb_philos;
-	long long t_die;
-	long long t_eat;
-	long long t_sleep;
+	long t_die;
+	long t_eat;
+	long t_sleep;
 	int nb_eats;
+	int done_eating;
 	int can_write;
-	int end;
 	struct s_philo *end_philo;
 	long start_time;
+	int finish;
 } t_gen;
 
 typedef struct s_philo
@@ -42,10 +44,8 @@ typedef struct s_philo
 	pthread_t thread;
 	pthread_mutex_t *lfork;
 	pthread_mutex_t *rfork;
-	pthread_mutex_t death_checker;
 	long long last_meal;
 	int nb_eats;
-	int can_eat;
 	t_gen *mother;
 } t_philo;
 

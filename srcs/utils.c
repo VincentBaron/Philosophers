@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/06 15:10:18 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/06 18:43:50 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void safe_write2(t_philo *philo, int type)
 		printf("%ld %d has taken a fork\n", time_stamp, philo->id);
 		pthread_mutex_unlock(&philo->mother->write_mutex);
 	}
-	if (type == DEAD)
+	if (type == DEAD && philo->mother->can_write)
 	{
 		pthread_mutex_lock(&philo->mother->write_mutex);
 		printf("%ld %d is dead\n", time_stamp, philo->id);
