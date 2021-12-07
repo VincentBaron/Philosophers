@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lock_unlock_forks.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentbaron <vincentbaron@student.42.f    +#+  +:+       +#+        */
+/*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:20:49 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 11:42:37 by vincentbaro      ###   ########.fr       */
+/*   Updated: 2021/12/07 15:17:22 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 void lock_forks(t_philo *philo)
 {
-    // if (philo->id % 2 == 0)
-    // {
+    if (philo->id % 2 == 1)
+    {
+        pthread_mutex_lock(philo->rfork);
+        pthread_mutex_lock(philo->lfork);
+    }
+    else
+    {
         pthread_mutex_lock(philo->lfork);
         pthread_mutex_lock(philo->rfork);
-		safe_write2(philo, FORK);
-        safe_write2(philo, FORK);
-    // }
-    // else
-    // {
-    //     pthread_mutex_lock(philo->rfork);
-    //     safe_write2(philo, FORK);
-    //     pthread_mutex_lock(philo->lfork);
-    //     safe_write2(philo, FORK);
-    // }
+    }
+    safe_write(philo, FORK);
+    safe_write(philo, FORK);
 }
 
 void unlock_forks(t_philo *philo)
