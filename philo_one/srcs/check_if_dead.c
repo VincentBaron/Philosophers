@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:41:42 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 15:17:26 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/07 17:16:08 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ int check_if_dead_or_done_eating(t_gen *mother)
     end_philo = NULL;
     while (1)
     {
+        pthread_mutex_lock(&mother->eat_mutex);
+        if (mother->done_eating >= mother->nb_philos)
+        {
+            pthread_mutex_lock(&mother->write_mutex);
+            mother->can_write = 0;
+            pthread_mutex_unlock(&mother->write_mutex);
+            safe_write(&mother->philo[0], FINISH);
+            pthread_mutex_unlock(&mother->eat_mutex);
+            return (1);
+        }
+        pthread_mutex_unlock(&mother->eat_mutex);
         i = 0;
         while (i < mother->nb_philos)
         {

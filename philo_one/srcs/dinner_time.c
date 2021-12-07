@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:49:40 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 15:12:31 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/07 16:01:47 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void eat(t_philo *philo)
     pthread_mutex_lock(&philo->mother->eat_mutex);
     philo->last_meal = get_time();
     philo->nb_eats--;
+    if (philo->nb_eats == 0)
+        philo->mother->done_eating++;
     pthread_mutex_unlock(&philo->mother->eat_mutex);
 }
 
@@ -28,14 +30,10 @@ void sleeping(t_philo *philo)
     my_sleep(philo->mother->t_sleep);
 }
 
-void *dinner_time(void *ptr_philo)
+int dinner_loop(t_philo *philo)
 {
-    t_philo *philo;
     int     keep_on;
     
-    philo = (t_philo *)ptr_philo;
-	if (philo->id % 2 == 0)
-		usleep(100);
     pthread_mutex_lock(&philo->mother->write_mutex);
     keep_on = philo->mother->can_write;
     pthread_mutex_unlock(&philo->mother->write_mutex);
@@ -51,5 +49,17 @@ void *dinner_time(void *ptr_philo)
     pthread_mutex_unlock(&philo->mother->write_mutex);
     if (keep_on)
         dinner_time(philo);
-    return (NULL);
+    return (1);
 }
+
+void *dinner_time(void *ptr_philo)
+{
+    t_philo *philo;
+    
+    philo = (t_philo *)ptr_philo;
+	if (philo->id % 2 == 0)
+		usleep(100);
+    dinner_loop(philo);
+   return (NULL);
+}
+

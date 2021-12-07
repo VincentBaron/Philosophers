@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 15:16:20 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/07 15:46:11 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void safe_write(t_philo *philo, int type)
 	if (type == FORK && philo->mother->can_write)
 		printf("%ld %d has taken a fork\n", time_stamp, philo->id);
 	if (type == DEAD)
-		printf("%ld %d is dead\n", time_stamp, philo->id);
+		printf("%ld %d died\n", time_stamp, philo->id);
+	if (type == FINISH)
+		printf("All Philos finished eating %d times\n", philo->mother->nb_eats);
 	pthread_mutex_unlock(&philo->mother->write_mutex);
 }

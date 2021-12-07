@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/24 11:40:58 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 14:33:59 by vbaron           ###   ########.fr       */
+/*   Created: 2021/08/24 12:07:59 by vbaron            #+#    #+#             */
+/*   Updated: 2021/12/07 18:18:22 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int main(int ac, char **av)
+void check_args(t_gen *mother, char **av, int ac)
 {
-	t_gen mother;
 	int i;
-	
-	if (ac < 5 || ac > 6)
-		error(&mother, 1);
-	check_args(&mother, av);
-	fill_mother(&mother, av, ac);
-	sit_down_philos(&mother);
-	// print_philos(&mother);
-	i = 0;
-	while (i < mother.nb_philos)
+	int f;
+
+	i = 1;
+	if (ac == 6 && (ft_strlen(av[5]) > 10 || ft_atoi(av[5]) > 2147483647 || ft_atoi(av[5]) < -2147483648))
+		error(mother, 2);
+	while (av[i])
 	{
-		pthread_create(&mother.philo[i].thread, NULL, &dinner_time, &mother.philo[i]);
+		f = 0;
+		if (ft_strlen(av[i]) > 10 || ft_atoi(av[i]) > 2147483647 || ft_atoi(av[i]) < -2147483648)
+			error(mother, 2);
+		while (av[i][f])
+		{
+			if (av[i][f] < '0' || av[i][f] > '9')
+				error(mother, 2);
+			f++;
+		}
 		i++;
 	}
-	check_if_dead_or_done_eating(&mother);
-	i = 0;
-	while (i < mother.nb_philos)
-	{
-		pthread_join(mother.philo[i].thread, NULL);
-		i++;
-	}
-	return (0);
+
 }
