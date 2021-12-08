@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:41:42 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 16:41:10 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 17:48:56 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_nbr_eats(t_gen *mother)
 		pthread_mutex_lock(&mother->write_mutex);
 		mother->can_write = 0;
 		pthread_mutex_unlock(&mother->write_mutex);
-		safe_write(&mother->philo[0], FINISH);
 		pthread_mutex_unlock(&mother->eat_mutex);
 		return (1);
 	}
