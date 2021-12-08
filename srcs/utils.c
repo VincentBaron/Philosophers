@@ -6,17 +6,17 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 17:48:44 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 17:57:40 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-long ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int i;
-	long nbr;
-	int sign;
+	int		i;
+	long	nbr;
+	int		sign;
 
 	i = 0;
 	nbr = 0;
@@ -41,11 +41,11 @@ long ft_atoi(const char *nptr)
 	return ((nbr * sign));
 }
 
-void my_sleep(long long time, t_gen *mother)
+void	my_sleep(long long time, t_gen *mother)
 {
-	int i;
-	int stat;
-	long long start_t;
+	int			i;
+	int			stat;
+	long long	start_t;
 
 	start_t = get_time();
 	i = 0;
@@ -56,22 +56,22 @@ void my_sleep(long long time, t_gen *mother)
 		stat = mother->can_write;
 		pthread_mutex_unlock(&mother->eat_mutex);
 		if (!stat)
-			break;
+			break ;
 		i++;
 	}
 }
 
-long get_time(void)
+long	get_time(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void safe_write(t_philo *philo, int type)
+void	safe_write(t_philo *philo, int type)
 {
-	long time_stamp;
+	long	time_stamp;
 
 	pthread_mutex_lock(&philo->mother->write_mutex);
 	time_stamp = get_time() - philo->mother->start_time;
