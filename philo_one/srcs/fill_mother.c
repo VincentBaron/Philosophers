@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:51:37 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 15:02:49 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 15:24:50 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	fill_mother(t_gen *mother, char **av, int ac)
 {
 	int	i;
 
+	init_vars(mother, av);
 	if (ac == 6)
 	{
 		mother->nb_eats = ft_atoi(av[5]);
