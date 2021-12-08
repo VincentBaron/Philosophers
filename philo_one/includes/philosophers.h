@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:22:04 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/07 18:17:09 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:31:07 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void error(t_gen *mother, int err);
 // utils.c
 long	ft_atoi(const char *nptr);
 void safe_write(t_philo *philo, int type);
-void my_sleep(long long time);
+void my_sleep(long long time, t_gen *mother);
 long get_time();
 
 // check_args.c

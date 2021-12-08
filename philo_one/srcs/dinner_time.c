@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:49:40 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 14:58:59 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:30:36 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	eat(t_philo *philo)
 	if (philo->nb_eats == 0)
 		philo->mother->done_eating++;
 	pthread_mutex_unlock(&philo->mother->eat_mutex);
-	my_sleep(philo->mother->t_eat);
+	my_sleep(philo->mother->t_eat, philo->mother);
 }
 
 void	sleeping(t_philo *philo)
 {
 	safe_write(philo, SLEEP);
-	my_sleep(philo->mother->t_sleep);
+	my_sleep(philo->mother->t_sleep, philo->mother);
 }
 
 int	dinner_loop(t_philo *philo)
