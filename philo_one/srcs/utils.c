@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:05:38 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 16:33:31 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:42:39 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,18 @@ void my_sleep(long long time, t_gen *mother)
 {
 	int i;
 	int stat;
+	long long start_t;
 
+	start_t = get_time();
 	i = 0;
-	while (i < 1000)
+	while ((get_time() - start_t) < time)
 	{
+		usleep(100);
 		pthread_mutex_lock(&mother->eat_mutex);
 		stat = mother->can_write;
 		pthread_mutex_unlock(&mother->eat_mutex);
 		if (!stat)
 			break;
-		usleep(time);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:07:59 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 14:47:30 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:59:08 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	check_args(t_gen *mother, char **av, int ac)
 
 	if (ac == 6 && (ft_strlen(av[5]) > 10
 			|| ft_atoi(av[5]) > 2147483647 || ft_atoi(av[5]) < -2147483648))
+		error(mother, 2);
+	if (ft_atoi(av[1]) == 0)
 		error(mother, 2);
 	i = 1;
 	while (av[i])

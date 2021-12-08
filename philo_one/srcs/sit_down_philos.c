@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:36:59 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 15:07:42 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:53:31 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	sit_down_philos(t_gen *mother)
 	i = 0;
 	while (i < mother->nb_philos)
 	{
+		mother->philo[i].lfork = NULL;
+		mother->philo[i].rfork = NULL;
 		mother->philo[i].id = i + 1;
 		if (i == 0)
 			mother->philo[i].lfork = &mother->forks[mother->nb_philos - 1];
