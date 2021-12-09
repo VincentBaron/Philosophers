@@ -6,7 +6,7 @@
 /*   By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 11:40:58 by vbaron            #+#    #+#             */
-/*   Updated: 2021/12/08 17:55:43 by vbaron           ###   ########.fr       */
+/*   Updated: 2021/12/09 11:50:49 by vbaron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	init_threads(t_gen *mother)
 		{
 			pthread_create(&mother->philo[i].thread,
 				NULL, &dinner_time, &mother->philo[i]);
-			if (mother->nb_philos % 2 == 1)
-				usleep(100);
 			i++;
 		}
 		check_if_dead_or_done_eating(mother);
@@ -50,6 +48,22 @@ void	init_threads(t_gen *mother)
 	}
 }
 
+void	clean_prgm(t_gen *mother)
+{
+	int	i;
+
+	i = 0;
+	while (i < mother->nb_philos)
+	{
+		pthread_mutex_destroy(&mother->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&mother->write_mutex);
+	pthread_mutex_destroy(&mother->eat_mutex);
+	free(mother->philo);
+	free(mother->forks);
+}
+
 int	main(int ac, char **av)
 {
 	t_gen	mother;
@@ -60,5 +74,6 @@ int	main(int ac, char **av)
 	fill_mother(&mother, av, ac);
 	sit_down_philos(&mother);
 	init_threads(&mother);
+	clean_prgm(&mother);
 	return (0);
 }

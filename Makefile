@@ -6,7 +6,7 @@
 #    By: vbaron <vbaron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/24 11:51:53 by vbaron            #+#    #+#              #
-#    Updated: 2021/12/08 18:05:40 by vbaron           ###   ########.fr        #
+#    Updated: 2021/12/09 11:52:30 by vbaron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ NAME = philo
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -g -pthread #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 all: $(NAME)
 
