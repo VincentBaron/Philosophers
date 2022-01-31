@@ -2,6 +2,7 @@
 <p align="center">
 <img src="An_illustration_of_the_dining_philosophers_problem.png" alt="100" width="300"/>
 </p>
+
 ## Project overview
 
 This project is the [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
