@@ -6,7 +6,7 @@
 ## Project overview
 
 This project is the [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem).
-It aims at using multi threading and mutexes to create a communication pattern between multiple threads.
+It aims at using multi threading and mutexes to create a communication pattern between multiple threads. This project is very abstract and hence explaining it briefly would not be possible. If you want a deep understanding of it, check out te link to it. On the other hand, below are the main concepts explored.
 
 The program is launched with:
 1. Number of philosopher
